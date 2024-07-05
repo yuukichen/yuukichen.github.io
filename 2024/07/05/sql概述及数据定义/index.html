@@ -16,21 +16,23 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="article">
-<meta property="og:title" content="My first blog">
-<meta property="og:url" content="http://example.com/2024/04/25/firstpage/index.html">
+    <meta name="description" content="SQL概述基本表的定义，删除与修改1. 定义基本表语句格式： CREATE TABLE &lt;表名&gt;     ( &lt;列名&gt; &lt;数据类型&gt;[ &lt;列级完整性约束条件&gt; ]     [，&lt;列名&gt; &lt;数据类型&gt;[ &lt;列级完整性约束条件&gt;]]………     [，&lt;表级完整性约束条件&gt; ]     );  【说明】如果">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Yuukichen の space">
+<meta property="og:url" content="http://example.com/2024/07/05/sql%E6%A6%82%E8%BF%B0%E5%8F%8A%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89/index.html">
 <meta property="og:site_name" content="Yuukichen の space">
+<meta property="og:description" content="SQL概述基本表的定义，删除与修改1. 定义基本表语句格式： CREATE TABLE &lt;表名&gt;     ( &lt;列名&gt; &lt;数据类型&gt;[ &lt;列级完整性约束条件&gt; ]     [，&lt;列名&gt; &lt;数据类型&gt;[ &lt;列级完整性约束条件&gt;]]………     [，&lt;表级完整性约束条件&gt; ]     );  【说明】如果">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2024/04/25/firstpage/001.jpg">
-<meta property="article:published_time" content="2024-04-25T12:48:12.406Z">
-<meta property="article:modified_time" content="2024-04-25T13:18:59.690Z">
+<meta property="og:image" content="http://example.com/.%5C%E2%80%AApics%5C20200331204116766.png">
+<meta property="article:published_time" content="2024-07-05T08:40:32.528Z">
+<meta property="article:modified_time" content="2024-07-04T09:09:48.773Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2024/04/25/firstpage/001.jpg">
+<meta name="twitter:image" content="http://example.com/.%5C%E2%80%AApics%5C20200331204116766.png">
   
   
   
-  <title>My first blog - Yuukichen の space</title>
+  <title>Yuukichen の space</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -225,7 +227,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="My first blog"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -236,8 +238,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-04-25 20:48" pubdate>
-          April 25, 2024 pm
+        <time datetime="2024-07-05 16:40" pubdate>
+          July 5, 2024 pm
         </time>
       </span>
     
@@ -248,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 words
+          931 words
         
       </span>
     
@@ -259,7 +261,7 @@
         
         
         
-          1 mins
+          8 mins
         
       </span>
     
@@ -304,13 +306,141 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">My first blog</h1>
+            <h1 id="seo-header"></h1>
             
             
               <div class="markdown-body">
                 
-                <img src="/2024/04/25/firstpage/001.jpg" srcset="/img/loading.gif" lazyload class="">
-
+                <h1 id="SQL概述"><a href="#SQL概述" class="headerlink" title="SQL概述"></a>SQL概述</h1><h2 id="基本表的定义，删除与修改"><a href="#基本表的定义，删除与修改" class="headerlink" title="基本表的定义，删除与修改"></a>基本表的定义，删除与修改</h2><h3 id="1-定义基本表"><a href="#1-定义基本表" class="headerlink" title="1. 定义基本表"></a>1. 定义基本表</h3><p>语句格式：</p>
+<pre><code class="hljs">CREATE TABLE &lt;表名&gt;
+    ( &lt;列名&gt; &lt;数据类型&gt;[ &lt;列级完整性约束条件&gt; ]
+    [，&lt;列名&gt; &lt;数据类型&gt;[ &lt;列级完整性约束条件&gt;]]………
+    [，&lt;表级完整性约束条件&gt; ]
+    );
+</code></pre>
+<p>【说明】如果完整性约束条件涉及到该表的多个属性列，则必须定义在表级上，否则既可以定义在列级也可以定义在表级。</p>
+<p>【例】建立“学生表”Student，学号是主码，姓名取值唯一</p>
+<pre><code class="hljs">CREATE TABLE Student
+    (Sno CHAR(9)PRIMARY KEY,
+    /*列级完整性约束条件，Sno为主码*/
+     Sname CHAR(20)UNIQE,
+     /*Sname 取值唯一*/
+     Ssex CHAR(2),
+     Sage SMALLINT,
+     Sdept CHAR(20)
+    );
+</code></pre>
+<p>【例】建立一个“课程表“Course</p>
+<pre><code class="hljs">CREATE TABLE Course
+    (Cno  CHAR(4) PRIMARY KEY,
+     Cname CHAR(40),
+     Cpno CHAR(4),
+     /*先修课*/
+     Ccerdit SMALLINT,
+     FOREIGN KEY(Cpno)References Course(Cno)
+     /*设置Cpno为外键，被参照表是Course，被参照列是Cno*/
+    );
+</code></pre>
+<p>【例】建立一个”学生选课”表 SC</p>
+<pre><code class="hljs">CREATE TABLE SC
+    (Sno CHAR(9),
+     Cno CHAR(4),
+     Grade SMALLINT,
+     PRIMARY KEY (Sno,Cno),
+     /*主码由两个属性构成,必须作为表级完整性进行定义*/
+     Foreign KEY(Sno) REFERENCES Student(Sno),
+     /*表级完整性约束条件，Sno为外码，被参照表是Student*/
+     Foreign KEY(Cno) REFERENCES Student(Cno)
+     /*表级完整性约束条件，Cno为外码，被参照表是Course*/
+    );
+</code></pre>
+<h3 id="2-数据类型"><a href="#2-数据类型" class="headerlink" title="2. 数据类型"></a>2. 数据类型</h3><p><img src="/.%5C%E2%80%AApics%5C20200331204116766.png" srcset="/img/loading.gif" lazyload alt="数据类型" title="数据类型"></p>
+<h3 id="3-修改基本表"><a href="#3-修改基本表" class="headerlink" title="3. 修改基本表"></a>3. 修改基本表</h3><p>语句格式：</p>
+<pre><code class="hljs">    ALTER TABLE &lt;表名&gt;
+    [ADD [COLUMN]&lt;新列名&gt; &lt;数据类型&gt; [完整性约束]]
+    [ADD &lt;表级完整性约束&gt;]
+    [DROP [COLUMN]&lt;列名&gt; [CASCADE|RESTRIC]]
+    [DROP CONSTRAINT&lt;完整性约束&gt;[CASCADE|RESTRIC]]
+    [ALTER COLUMN &lt;列名&gt;&lt;数据类型&gt;];
+</code></pre>
+<p>【说明】</p>
+<ul>
+<li><p>DROP COLUMN 子句用于删除表中的列。</p>
+<ul>
+<li>指定了CASCADE（级联）短语，自动删除引用该列的其他对象。</li>
+<li>指定了RESTRIC（限制）短语，若该列被其他对象所引用，则将拒绝删除该列。</li>
+</ul>
+</li>
+<li><p>DROP CONSTRAINT 子句用于删除指定的完整性约束条件。</p>
+</li>
+<li><p>ALTER COLUMN 子句用于修改原有的列的定义，包括修改列名和列的数据类型。</p>
+</li>
+</ul>
+<p>【例】向Student表增加“入学时间”列，其数据类型为日期型。</p>
+<pre><code class="hljs">ALTER TABLE Student ADD S_entrance Date;
+/*不论基本表中原来是否已有数据，新增加的列数据都为Null*/
+</code></pre>
+<p>【例】将年龄的数据类型由字符型该为整数。</p>
+<pre><code class="hljs">ALTER TABLE Student ALTER COLUMN Sage INT;
+</code></pre>
+<p>【例】增加课程每次必须取唯一值的约束条件。</p>
+<pre><code class="hljs">ALTER TABLE Course ADD UNIQUE (Cname);
+</code></pre>
+<h3 id="4-删除基本表"><a href="#4-删除基本表" class="headerlink" title="4. 删除基本表"></a>4. 删除基本表</h3><p>语句格式：</p>
+<pre><code class="hljs">DROP TABLE &lt;表名&gt;[RESTRICT|CASCADE];
+</code></pre>
+<p>【例】删除Student表</p>
+<pre><code class="hljs">DROP TABLE Student CASCADE;
+</code></pre>
+<p>【说明】</p>
+<ul>
+<li><p>RESTRICT：删除表是有限制的。</p>
+<ul>
+<li>欲删除的基本表不能被其他表的约束所引用。</li>
+<li>如果存在依赖该表的对象，则此表不能被删除。</li>
+</ul>
+</li>
+<li><p>CASCADE：删除该表没有限制。</p>
+<ul>
+<li>在删除基本表的同时，相关的依赖对象一起删除。</li>
+</ul>
+</li>
+<li><p>基本表定义被删除，数据被删除，表上建立的索引，视图，触发器等也将被删除。</p>
+</li>
+</ul>
+<h3 id="5-索引的建立与删除–INDEX"><a href="#5-索引的建立与删除–INDEX" class="headerlink" title="5. 索引的建立与删除–INDEX"></a>5. 索引的建立与删除–INDEX</h3><p>** 建立索引的目的 **：加快查询速度。</p>
+<p>** 谁可以建立索引？**</p>
+<ul>
+<li>DBA 或 表的属主（即建立表的人）</li>
+<li>DBMS一般会自动建立以下列上的索引</li>
+<li>PRIMARY KEY</li>
+<li>UNIQUE</li>
+</ul>
+<p>** 谁维护索引？**</p>
+<ul>
+<li>DBMS自动完成。</li>
+</ul>
+<p>** 1. 使用索引 **</p>
+<ul>
+<li>DBMS自动选择是否使用索引以及使用哪些索引</li>
+</ul>
+<p>【例】为学生-课程数据库中的Student,Course,SC三个表建立索引。</p>
+<pre><code class="hljs">CREATE UNIQUE INDEX Stusno ON Student(Sno);
+CREATE UNIQUE INDEX Coucno ON Course(Cno);
+CREATE UNIQUE INDEX SCno ON SC(Sno ASC,Cno DESC);
+</code></pre>
+<p>Student 表按学号升序建唯一索引。<br>Course 表按课程号升序建唯一索引。<br>SC 表按学号升序和课程号降序建唯一索引。</p>
+<p>** 2. 删除索引 **</p>
+<p>语句格式：</p>
+<pre><code class="hljs">DROP INDEX &lt;索引名&gt; ON &lt;表名&gt;;
+DROP INDEX &lt;表名&gt;.&lt;索引名&gt;;
+</code></pre>
+<p>删除索引时，系统会从数据字典中删去有关该索引的描述。</p>
+<p>【例】删除Student表的Stusname索引</p>
+<pre><code class="hljs">DROP INDEX Stusno ON Student;
+或
+DROP INDEX Student.Stusno;
+</code></pre>
 
                 
               </div>
@@ -328,8 +458,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>My first blog</div>
-      <div>http://example.com/2024/04/25/firstpage/</div>
+      <div></div>
+      <div>http://example.com/2024/07/05/sql概述及数据定义/</div>
     </div>
     <div class="license-meta">
       
@@ -341,7 +471,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>April 25, 2024</div>
+          <div>July 5, 2024</div>
         </div>
       
       
@@ -373,18 +503,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/07/05/sql%E6%A6%82%E8%BF%B0%E5%8F%8A%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89/" title="">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/04/25/hello-world/" title="Hello World">
-                        <span class="hidden-mobile">Hello World</span>
+                      <a href="/2024/04/25/firstpage/" title="My first blog">
+                        <span class="hidden-mobile">My first blog</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
